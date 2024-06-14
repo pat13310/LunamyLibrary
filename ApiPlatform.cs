@@ -65,15 +65,15 @@
 
 
         // On décode notre JWT et on met l'ensemble dans un dictionnaire
-        public Dictionary<string, string>? DecodeJwtToken(string? jwtToken)
+        public static Dictionary<string, string>? DecodeJwtToken(string? jwtToken)
         {
             if (jwtToken == null)
                 return null;
 
-            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+            JwtSecurityTokenHandler handler = new();
             JwtSecurityToken token = handler.ReadJwtToken(jwtToken); // Lit le token sans valider la signature
 
-            Dictionary<string, string> claims = new Dictionary<string, string>();
+            Dictionary<string, string> claims = [];
             foreach (var claim in token.Claims)
             {
                 if (!claims.ContainsKey(claim.Type))
@@ -90,10 +90,10 @@
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/ld+json"));
 
             // Construction de l'URL avec les paramètres de la requête
-            StringBuilder url = new StringBuilder();
+            StringBuilder url = new();
             url.Append(_baseAdmin + endpoint + "?");
 
-            StringBuilder queryBuilder = new StringBuilder();
+            StringBuilder queryBuilder = new();
             foreach (var param in queryParams)
             {
                 // Append each parameter key and value to the string builder, URL encoded.
@@ -115,7 +115,7 @@
                     return default; // Assurez-vous d'avoir un 'return' ici si la requete n'aboutit pas
                 }
                 string result = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<HydraResponse<T>>(result);
+                var data = JsonConvert.DeserializeObject<LunamyLibrary.HydraResponse<T>>(result);
                 if (data?.Members == null)
                 {
                     Console.WriteLine("Members is null. Response JSON: " + result);

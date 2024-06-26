@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace LunamyLibrary
 {
-    public class HydraMapping
+    public class HydraMapping: HydraBase
     {
-        [JsonProperty("@type")]
-        public required string Type { get; set; }
-
         [JsonProperty("variable")]
         public required string Variable { get; set; }
 

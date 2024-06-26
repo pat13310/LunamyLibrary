@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace LunamyLibrary
 {
-    public class HydraSearch
+    public class HydraSearch: HydraBase
     {
-        [JsonProperty("@type")]
-        public required string Type { get; set; }
-
+       
         [JsonProperty("hydra:template")]
         public required string Template { get; set; }
 

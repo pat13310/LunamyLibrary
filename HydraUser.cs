@@ -1,18 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using LunamyLibrary;
+using Newtonsoft.Json;
 
 namespace ApiPlateform.ApiPlateForm
 {
 
-    public class HydraUser
+    public class HydraUser: HydraBase
     {
-        //[JsonProperty("@context")]
-        //public required string Context { get; set; }
-        //[JsonProperty("@id")]
-        public required string Id { get; set; }
-
-        [JsonProperty("@type")]
-        public required string Type { get; set; }
-
+        [JsonProperty("@context")]
+        public required string Context { get; set; }
+       
         [JsonProperty("id")]
         public Guid UserId { get; set; }
 

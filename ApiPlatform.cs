@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using System;
+    using System.Diagnostics;
     using System.IdentityModel.Tokens.Jwt;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -46,7 +47,7 @@
                 if (!response.IsSuccessStatusCode)
                 {
                     string errorContent = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"Error: {response.StatusCode}. Details: {errorContent}");
+                    Debug.WriteLine($"Error: {response.StatusCode}. Details: {errorContent}");
                     return null; // Assurez-vous d'avoir un 'return' ici
                 }
 
@@ -57,7 +58,7 @@
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine($"An error occurred: {e.Message}");
+                Debug.WriteLine($"Une erreur : {e.Message}");
                 return null; // Assurez-vous d'avoir un 'return' ici
             }
             // Si d'autres exceptions peuvent être levées, elles doivent aussi être gérées ou une valeur doit être retournée à la fin.
@@ -111,8 +112,8 @@
                 if (!response.IsSuccessStatusCode)
                 {
                     string errorContent = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"Error: {response.StatusCode}. Details: {errorContent}");
-                    return default; // Assurez-vous d'avoir un 'return' ici si la requete n'aboutit pas
+                    Debug.WriteLine($"Error: {response.StatusCode}. Details: {errorContent}");
+                    return default; // Assurez-vous d'avoir un 'return' ici si la requête n'aboutit pas
                 }
                 string result = await response.Content.ReadAsStringAsync();
                 var data = JsonConvert.DeserializeObject<LunamyLibrary.HydraResponse<T>>(result);
@@ -124,7 +125,7 @@
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine($"An error occurred: {e.Message}");
+                Debug.WriteLine($"An error occurred: {e.Message}");
                 return default; // Cela retournera null pour les types de référence et une liste vide pour les types de valeur
             }
         }

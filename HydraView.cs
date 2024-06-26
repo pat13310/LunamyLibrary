@@ -2,14 +2,8 @@
 
 namespace LunamyLibrary
 {
-    public class HydraView
-    {
-        [JsonProperty("@id")]
-        public required string Id { get; set; }
-
-        [JsonProperty("@type")]
-        public required string Type { get; set; }
-
+    public class HydraView: HydraBase 
+    { 
         [JsonProperty("hydra:first")]
         public required string First { get; set; }
 

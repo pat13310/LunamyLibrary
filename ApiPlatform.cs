@@ -1,4 +1,4 @@
-﻿namespace ApiPlateform.ApiPlateForm
+﻿namespace LunamyLibrary
 {
     using Newtonsoft.Json;
     using System;
